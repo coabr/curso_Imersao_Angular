@@ -1,0 +1,32 @@
+1 - Instalar o Angular CLI: 
+
+npm install -g @angular/cli
+
+2 - Criar uma pasta para o projeto por meio do CMD. No nosso caso criamos a pasta "hello", onde irão ficar 
+os arquivos.
+
+ng new hello
+
+Responder às perguntas:
+
+Would you like to add Angular routing? No
+Wich stylesheet format would you like to use? SCSS
+
+3 - Abrir o Visual Studio Code, baixar a extensão Angular Snippets (Version 9) e abrir o projeto.
+
+code .
+
+4 - Para abrir/compilar o projeto no navegador, por meio do CMD vá até o caminho da pasta 'hello' e digite:
+
+ng serve
+
+5 - Criar o primeiro componente:
+
+ng generate component nomedocomponente      OU       ng g c nomedocomponente
+
+
+
+
+
+
+
