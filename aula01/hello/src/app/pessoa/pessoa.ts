@@ -1,5 +1,5 @@
 export class Pessoa {
-    
+
     codigo: string;
     nome: string;
     telefone: string;
@@ -8,5 +8,5 @@ export class Pessoa {
     bairro: string;
     cidade: string;
     estado: string;
-
+    ativo: boolean;
 }

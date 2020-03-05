@@ -3,46 +3,6 @@
 
 <app-menu></app-menu>
 
-<!-- <p>{{titulo}}</p> -->
 
-<h3 [textContent]="titulo"></h3>
+<ng-content></ng-content>
 
-<!-- <button (click)="ola()" > Ola </button> -->
-
-<!-- ABAIXO, UTILIZANDO O DATA BINDING -->
-
-<label>Código: </label>
-<input type="text" [(ngModel)]="pessoa.codigo"/>
-<br>
-<br>
-<label>Nome: </label>
-<input type="text" [(ngModel)]="pessoa.nome"/>
-<br><br>
-<label>Telefone: </label>
-<input type="text" [(ngModel)]="pessoa.telefone"/>
-<br><br>
-<label>Data de nascimento: </label>
-<input type="date" [(ngModel)]="pessoa.dataNascimento"/>
-<br><br>
-<label>Endereço: </label>
-<input type="text" [(ngModel)]="pessoa.endereco"/>
-<br><br>
-<label>Bairro: </label>
-<input type="text" [(ngModel)]="pessoa.bairro"/>
-<br><br>
-<label>Cidade: </label>
-<input type="text" [(ngModel)]="pessoa.cidade"/>
-<br><br>
-<label>Estado: </label>
-<input type="text" [(ngModel)]="pessoa.estado"/>
-<br><br>
-
-
-
-
-
-
- <button (click)="imprimir()"> Imprimir </button>
-
- <button (click)="invertermostrar()"> Mensagem secreta </button>
- <h3 *ngIf="mostrar"> Surpriiiiiiise! </h3>
