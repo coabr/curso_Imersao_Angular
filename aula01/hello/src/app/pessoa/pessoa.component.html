@@ -1,8 +1,8 @@
 <app-layout>
+    <!--
+    <p>{{titulo}}</p> 
 
-    <!-- <p>{{titulo}}</p> -->
-
-    <!-- Antes, o título abaixo era um h3 (menor),
+ Antes, o título abaixo era um h3 (menor),
         eu alterei para um maior (h1)-->
 
     <h1 [textContent]="titulo"></h1>
@@ -30,28 +30,40 @@
     <label>Bairro: </label>
     <input type="text" [(ngModel)]="pessoa.bairro" />
     <br><br>
+
     <label>Cidade: </label>
-    <input type="text" [(ngModel)]="pessoa.cidade" />
+    <select [(ngModel)]="pessoa.cidade">
+        <option *ngFor="let cidade of listaMunicipio" [ngValue]="cidade.nome">{{cidade.nome}}</option>
+    </select>
     <br><br>
+
+
     <label>Estado: </label>
-    <input type="text" [(ngModel)]="pessoa.estado" />
+    <!-- <select [(ngModel)]="pessoa.estado">
+    Caso eu fosse carregar o municipio de acordo com o estado selecionado, usaria o metodo abaixo -->
+    <select [(ngModel)]="pessoa.estado" (ngModelChange)="carregarCidade()">
+        <option *ngFor="let estado of listaEstados" [ngValue]="estado">{{estado}}</option>
+    </select>
     <br><br>
+
+
     <label>Ativo: </label>
     <input type="radio" [(ngModel)]="pessoa.ativo" [value]="true" />Sim
     <input type="radio" [(ngModel)]="pessoa.ativo" [value]="false" />Não
 
     <br><br>
 
-    <button (click)="imprimir()"> Imprimir </button> &nbsp; <button (click)="incluir()">Incluir</button>
-    <br><br>
-    <!-- <button (click)="invertermostrar()"> Mensagem secreta </button> -->
-    <!-- 
-        <br>
+    <!-- <button (click)="imprimir()"> Imprimir </button>  -->
+
+    <button (click)="incluir()">Incluir</button>
+    <br>
+
+    <!-- <button (click)="invertermostrar()"> Mensagem secreta </button> 
+    <br>
     <h3 *ngIf="mostrar"> Surpriiiiiiise! </h3>
     <br> -->
 
-
-    <br><br>
+    <br>
     <table border="1">
         <tr>
             <th>Código</th>
@@ -63,18 +75,20 @@
             <th>Cidade</th>
             <th>Estado</th>
             <th>Ativo</th>
+            <th>Remover</th>
         </tr>
         <tr *ngFor="let pessoa of listaPessoas">
             <td>{{pessoa.codigo}}</td>
             <td>{{pessoa.nome}}</td>
             <td>{{pessoa.telefone}}</td>
-            <td>{{pessoa.dataNascimento}}</td>
+            <td>{{pessoa.dataNascimento | date:'dd/MM/yyyy'}}</td>
             <td>{{pessoa.endereco}}</td>
             <td>{{pessoa.bairro}}</td>
             <td>{{pessoa.cidade}}</td>
             <td>{{pessoa.estado}}</td>
             <td *ngIf="pessoa.ativo">Sim</td>
             <td *ngIf="!pessoa.ativo">Não</td>
+            <td style="cursor: pointer;"><a (click)="remover(pessoa)"> X </a></td>
         </tr>
 
 

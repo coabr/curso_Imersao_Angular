@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Pessoa } from '../pessoa/pessoa';
 
+
 @Component({
   selector: 'app-pessoa',
   templateUrl: './pessoa.component.html',
@@ -35,15 +36,44 @@ export class PessoaComponent implements OnInit {
 
   mostrar: boolean = false;
 
+  listaEstados: string[] = ["AC", "AL", "AP", "AM", "BA", "CE", "DF", "ES", "GO", "MA", "MT", "MS", "MG", "PA", "PB", "PR", "PE", "PI", "RJ", "RN", "RS", "RO", "RR", "SC", "SP", "SE", "TO"]
+
+  listaMunicipio: any[] = []
+
+  /* Esse metodo abaixo é para carregar o município de acordo com o estado escolhido pelo usuário.
+  Pesquisar mais sobre isso, nesse caso o lista.Municipio viria aqui dentro
+  desse método */
+
+  carregarCidade() {
+    if (this.pessoa.estado == 'PE') {
+      this.listaMunicipio = [
+        { codigo: "1", nome: "Recife" }, { codigo: "4", nome: "Olinda" },
+        { codigo: "5", nome: "Garanhuns" }, { codigo: "6", nome: "Belo Jardim" },];
+    } else if (this.pessoa.estado == 'PB') {
+      this.listaMunicipio = [
+        { codigo: "2", nome: "Cabedelo" }];
+    } else {
+      this.listaMunicipio = [{ codigo: "3", nome: "Sao Paulo" },
+      { codigo: "7", nome: "Navegantes" },
+      { codigo: "8", nome: "abc" }];
+    }
+  }
+
+  remover(pessoa){
+    this.listaPessoas = this.listaPessoas.filter(
+      obj => obj !== pessoa);
+
+  }
+
   listaPessoas: Pessoa[] = [
     { /* essa lista está escrita no mesmo estilo do JSON*/
       "codigo": "123",
 
       "nome": "Carolina Brito",
 
-      "telefone": "81-982718884",
+      "telefone": "(81) 9 8271-8884",
 
-      "dataNascimento": "25/06/1993",
+      "dataNascimento": new Date(),
 
       "endereco": "Estrada do Encanamento",
 
@@ -59,13 +89,13 @@ export class PessoaComponent implements OnInit {
     {
       "codigo": "000",
 
-      "nome": "abc",
+      "nome": "Joaquim Andrade",
 
-      "telefone": "81-999999",
+      "telefone": "(81) 9 9999-9999",
 
-      "dataNascimento": "220/02/2003",
+      "dataNascimento": new Date(),
 
-      "endereco": "Estrada do arraial",
+      "endereco": "Estrada do arraial, 4000, ap 30",
 
       "bairro": "Casa Forte",
 
@@ -80,27 +110,29 @@ export class PessoaComponent implements OnInit {
 
       "nome": "xyz",
 
-      "telefone": "81-9888889",
+      "telefone": "(81) 9 8888-9989",
 
-      "dataNascimento": "07/12/1703",
+      "dataNascimento": new Date(),
 
-      "endereco": "Estrada do arraial",
+      "endereco": "Estrada do armazem, 19, ap 33",
 
       "bairro": "Casa Forte",
 
       "cidade": "Recife",
 
       "estado": "Pernambuco",
-      
+
       "ativo": false,
     }
 
 
   ]
 
-  
 
-  constructor() { }
+
+  constructor() {
+
+  }
 
   ngOnInit(): void {
   }
@@ -121,7 +153,8 @@ export class PessoaComponent implements OnInit {
     this.pessoa = new Pessoa();
   }
   /* Removemos o botao inverter/mostrar (a mensagem surpresa)
-    invertermostrar() {
-    this.mostrar = !this.mostrar
-  }*/
+invertermostrar() {
+this.mostrar = !this.mostrar
+}*/
+
 }

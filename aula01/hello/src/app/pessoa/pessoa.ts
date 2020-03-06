@@ -3,7 +3,7 @@ export class Pessoa {
     codigo: string;
     nome: string;
     telefone: string;
-    dataNascimento: string;
+    dataNascimento: Date;
     endereco: string;
     bairro: string;
     cidade: string;

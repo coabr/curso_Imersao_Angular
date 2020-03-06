@@ -1,0 +1,58 @@
+<app-layout>
+    
+    
+    <h1 [textContent]="titulo"></h1>
+
+
+
+    <label>Código: </label>
+    <input type="text" [(ngModel)]="produto.codigo" />
+    <br>
+    <br>
+    <label>Nome: </label>
+    <input type="text" [(ngModel)]="produto.nome" />
+    <br><br>
+    <label>Descrição: </label>
+    <input type="text" [(ngModel)]="produto.descricao" />
+    <br><br>
+    <label>Data de Validade: </label>
+    <input type="date" [(ngModel)]="produto.dataValidade" />
+    <br><br>
+    <label>Quantidade: </label>
+    <input type="text" [(ngModel)]="produto.quantidade" />
+    <br><br>
+    <label>Unidade de Medida: </label>
+    <select [(ngModel)]="produto.unidadeMedida">
+        <option *ngFor="let unidade of unidadeMedida" [ngValue]="unidade">{{unidade}}</option>
+    </select>
+    <br><br>
+
+    <button (click)="incluir()">Incluir</button>
+    <br>
+
+
+    <br>
+    <table border="1">
+        <tr>
+            <th>Código</th>
+            <th>Nome</th>
+            <th>Descrição</th>
+            <th>Data de Validade</th>
+            <th>Quantidade</th>
+            <th>Unidade de Medida</th>
+            <th>Remover</th>
+        </tr>
+        <tr *ngFor="let produto of listaProdutos">
+            <td>{{produto.codigo}}</td>
+            <td>{{produto.nome}}</td>
+            <td>{{produto.descricao}}</td>
+            <td>{{produto.dataValidade | date:'dd/MM/yyyy'}}</td>
+            <td>{{produto.quantidade}}</td>
+            <td>{{produto.unidadeMedida}}</td>
+            <td style="cursor: pointer;"><a (click)="remover(produto)"> X </a></td>
+        </tr>
+
+
+    </table>
+
+</app-layout>
