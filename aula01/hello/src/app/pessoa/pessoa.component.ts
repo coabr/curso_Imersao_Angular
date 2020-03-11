@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Pessoa } from '../pessoa/pessoa';
 
 
@@ -10,39 +10,11 @@ import { Pessoa } from '../pessoa/pessoa';
 export class PessoaComponent implements OnInit {
 
   titulo: string = 'Cadastro de Pessoas no Sistema';
-
-  texto: string = 'Carol';
-
-  /* COMO CRIAMOS A CLASSE, ESSA PARTE ABAIXO NÃO É MAIS NECESSARIA
-  codigo: string= '';
-
-  nome: string= '';
-
-  telefone: string= '';
-
-  dataNascimento: string= '';
-
-  endereco: string= '';
-
-  bairro: string= '';
-
-  cidade: string= '';
-
-  estado: string= ''; */
-
-
-  /* Declarando a classe Pessoa*/
   pessoa: Pessoa = new Pessoa();
-
   mostrar: boolean = false;
-
   listaEstados: string[] = ["AC", "AL", "AP", "AM", "BA", "CE", "DF", "ES", "GO", "MA", "MT", "MS", "MG", "PA", "PB", "PR", "PE", "PI", "RJ", "RN", "RS", "RO", "RR", "SC", "SP", "SE", "TO"]
-
   listaMunicipio: any[] = []
-
-  /* Esse metodo abaixo é para carregar o município de acordo com o estado escolhido pelo usuário.
-  Pesquisar mais sobre isso, nesse caso o lista.Municipio viria aqui dentro
-  desse método */
+  operacao: string = 'pesquisar';
 
   carregarCidade() {
     if (this.pessoa.estado == 'PE') {
@@ -59,102 +31,72 @@ export class PessoaComponent implements OnInit {
     }
   }
 
-  remover(pessoa){
-    this.listaPessoas = this.listaPessoas.filter(
-      obj => obj !== pessoa);
-
-  }
-
-  listaPessoas: Pessoa[] = [
-    { /* essa lista está escrita no mesmo estilo do JSON*/
-      "codigo": "123",
-
+  listaPessoas: Pessoa[] = 
+  
+  [
+    {
+      "codigo": "01",
       "nome": "Carolina Brito",
-
       "telefone": "(81) 9 8271-8884",
-
       "dataNascimento": new Date(),
-
       "endereco": "Estrada do Encanamento",
-
       "bairro": "Casa Forte",
-
-      "cidade": "Recife",
-
+      "cidade": { codigo: "1", nomeCidade: "Recife" },
       "estado": "Pernambuco",
-
       "ativo": true,
     },
 
     {
-      "codigo": "000",
-
+      "codigo": "02",
       "nome": "Joaquim Andrade",
-
       "telefone": "(81) 9 9999-9999",
-
       "dataNascimento": new Date(),
-
       "endereco": "Estrada do arraial, 4000, ap 30",
-
       "bairro": "Casa Forte",
-
-      "cidade": "Recife",
-
+      "cidade": { codigo: "2", nomeCidade: "Garanhuns" },
       "estado": "Pernambuco",
-
       "ativo": true,
     },
     {
-      "codigo": "159",
-
+      "codigo": "03",
       "nome": "xyz",
-
       "telefone": "(81) 9 8888-9989",
-
       "dataNascimento": new Date(),
-
       "endereco": "Estrada do armazem, 19, ap 33",
-
       "bairro": "Casa Forte",
-
-      "cidade": "Recife",
-
+      "cidade": { codigo: "4", nomeCidade: "Olinda" },
       "estado": "Pernambuco",
-
       "ativo": false,
     }
-
-
-  ]
-
-
-
+  ];
+  
   constructor() {
-
   }
 
   ngOnInit(): void {
   }
 
-  imprimir() {
-    alert('Código: ' + this.pessoa.codigo + '. '
-      + '\nNome: ' + this.pessoa.nome + '. '
-      + '\nTelefone: ' + this.pessoa.telefone + '. '
-      + '\nData de nascimento: ' + this.pessoa.dataNascimento + '. '
-      + '\nEndereço: ' + this.pessoa.endereco + '. '
-      + '\nBairro: ' + this.pessoa.bairro + '. '
-      + '\nCidade: ' + this.pessoa.cidade + '. '
-      + '\nEstado: ' + this.pessoa.estado + '. ');
+  remover(pessoa) {
+    this.listaPessoas = this.listaPessoas.filter(
+      obj => obj !== pessoa);
+  }
+
+  adicionarPessoa(pessoa) {
+    this.listaPessoas.push(pessoa);
   }
 
   incluir() {
-    this.listaPessoas.push(this.pessoa);
     this.pessoa = new Pessoa();
+    this.operacao = 'incluir';
   }
-  /* Removemos o botao inverter/mostrar (a mensagem surpresa)
-invertermostrar() {
-this.mostrar = !this.mostrar
-}*/
 
+  alterar(pessoa) {
+    this.pessoa = pessoa;
+    this.operacao = 'alterar';
+  }
+
+  editarPessoa(pessoa) {
+    this.pessoa = pessoa;
+    console.log("pessoa para edição", pessoa);
+  }
 }

@@ -1,3 +1,5 @@
+import { Cidade } from './cidade';
+
 export class Pessoa {
 
     codigo: string;
@@ -6,7 +8,7 @@ export class Pessoa {
     dataNascimento: Date;
     endereco: string;
     bairro: string;
-    cidade: string;
+    cidade: Cidade;
     estado: string;
     ativo: boolean;
 }
