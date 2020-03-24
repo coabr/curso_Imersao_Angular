@@ -1,7 +1,7 @@
 import { Component, OnInit} from '@angular/core';
 import { Curso } from '../servico/curso';
 import { CursoService } from '../servico/curso.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-cursomanter',
@@ -10,18 +10,30 @@ import { Router } from '@angular/router';
 })
 export class CursomanterComponent implements OnInit {
 
+  nomeCurso: string = '';
   curso: Curso = new Curso();
+  operacao: string = 'Incluir';
 
   constructor(
-    private cursoService: CursoService,
+    private routeActivated: ActivatedRoute,
+    private cursoServico: CursoService,
     private router: Router
   ) { }
 
   ngOnInit(): void {
+    this.nomeCurso = this.routeActivated.snapshot.params.id;
+    if(this.nomeCurso != null){
+      this.operacao = 'Alterar';
+      this.cursoServico.pesquisar(this.nomeCurso).subscribe(
+        data => {
+          this.curso = (<Curso[]>data)[0];
+        }
+      );
+    }
   }
 
   incluir(){
-    this.cursoService.incluir(this.curso).subscribe(
+    this.cursoServico.incluir(this.curso).subscribe(
       retorno => {        
         alert(retorno['mensagem']);
         this.voltar();

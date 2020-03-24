@@ -10,6 +10,9 @@ import { CursoComponent } from './curso/curso.component';
 import { LayoutComponent } from './layout/layout.component';
 import { CursoService } from './curso/servico/curso.service';
 import { CursomanterComponent } from './curso/cursomanter/cursomanter.component';
+import { AlunoComponent } from './aluno/aluno.component';
+import { AlunoService } from './aluno/servico/aluno.service';
+import { AlunomanterComponent } from './aluno/alunomanter/alunomanter.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +20,9 @@ import { CursomanterComponent } from './curso/cursomanter/cursomanter.component'
     HomeComponent,
     CursoComponent,
     LayoutComponent,
-    CursomanterComponent
+    CursomanterComponent,
+    AlunoComponent,
+    AlunomanterComponent
   ],
   imports: [
     BrowserModule,
@@ -26,7 +31,8 @@ import { CursomanterComponent } from './curso/cursomanter/cursomanter.component'
     HttpClientModule
   ],
   providers: [
-    CursoService
+    CursoService,
+    AlunoService
   ],
   bootstrap: [AppComponent]
 })

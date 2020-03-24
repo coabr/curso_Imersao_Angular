@@ -10,10 +10,10 @@ import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
   styleUrls: ['./curso.component.css']
 })
 export class CursoComponent implements OnInit {
- 
-  curso: Curso = new Curso();
 
+  curso: Curso = new Curso();
   listaCurso: Curso[] = [];
+  selecionado: Curso;
 
   constructor(
     private router: Router,
@@ -32,8 +32,28 @@ export class CursoComponent implements OnInit {
     );
   }
 
-  incluir(){
+  incluir() {
     this.router.navigate(['/curso/incluir']);
   }
 
+  selecionar(valor) {
+    this.selecionado = valor;
+  }
+
+  remover() {
+    alert(this.selecionado.nome);
+    this.cursoServico.remover(this.selecionado).subscribe(
+      data => {
+        alert(data['mensagem']);
+      }
+    );
+  }
+
+  alterar(){    
+    this.router.navigate(['/curso/alterar/'+this.selecionado.nome]);
+  }
+
 }
+
+
+

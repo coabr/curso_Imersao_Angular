@@ -25,6 +25,7 @@
           <table class="table">
             <thead>
               <tr>
+                <th></th>
                 <th>Codigo</th>
                 <th>Nome</th>
                 <th>Instrutor</th>
@@ -35,6 +36,7 @@
             </thead>
             <tbody>
               <tr *ngFor="let curso of listaCurso">
+                <th><input type="radio" name="selecionado" (change)="selecionar(curso)" /></th>
                 <th>{{curso.codigo}}</th>
                 <td>{{curso.nome}}</td>
                 <td>{{curso.instrutor}}</td>
@@ -51,9 +53,14 @@
       <div class="row" style="margin-bottom: 20px;">
         <div class="col-lg-12">
           <button type="button" class="btn btn-primary" style="margin-right: 10px;" (click)="incluir()"> Incluir
-          </button></div>
+          </button>
+          <button type="button" class="btn btn-primary" style="margin-right: 10px;" (click)="remover()"> Remover
+          </button>
+          <button type="button" class="btn btn-primary" style="margin-right: 10px;" (click)="alterar()"> Alterar
+          </button>
+        </div>
+        <br>
       </div>
     </div>
-
   </div>
 </app-layout>
