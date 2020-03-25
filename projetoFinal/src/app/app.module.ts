@@ -13,6 +13,8 @@ import { CursomanterComponent } from './curso/cursomanter/cursomanter.component'
 import { AlunoComponent } from './aluno/aluno.component';
 import { AlunoService } from './aluno/servico/aluno.service';
 import { AlunomanterComponent } from './aluno/alunomanter/alunomanter.component';
+import { MatriculaComponent } from './matricula/matricula.component';
+import { MatriculamanterComponent } from './matricula/matriculamanter/matriculamanter.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +24,9 @@ import { AlunomanterComponent } from './aluno/alunomanter/alunomanter.component'
     LayoutComponent,
     CursomanterComponent,
     AlunoComponent,
-    AlunomanterComponent
+    AlunomanterComponent,
+    MatriculaComponent,
+    MatriculamanterComponent
   ],
   imports: [
     BrowserModule,

@@ -6,6 +6,9 @@ import { Aluno } from './aluno';
   providedIn: 'root'
 })
 export class AlunoService {
+  consultar(arg0: string) {
+    throw new Error("Method not implemented.");
+  }
   
   constructor(
     private http: HttpClient
